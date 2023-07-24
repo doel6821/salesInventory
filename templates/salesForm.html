@@ -1,0 +1,62 @@
+{% include 'header.html' %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Master Product</h1>
+       
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="card card-primary">
+        <!-- form start -->
+        {% block content %}
+        <div class="text-center text-danger">
+          {{ error_statement }}
+        </div>
+        {% endblock %}
+        <form action="addsales" method="POST">
+          <div class="card-body">
+            <div class="form-group">
+              <label>Customer Code - Customer Name</label>
+              <select name="customer_code"class="form-control select2" style="width: 100%;">
+                {% for customer in data_customer %}
+                <option value="{{customer.1}}">{{customer.1}} - {{customer.2}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Product Code - Product Name</label>
+              <select name="product_code"class="form-control select2" style="width: 100%;">
+                {% for product in data_product %}
+                <option value="{{product.1}}">{{product.1}} - {{product.2}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity" required>
+            </div>
+            
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+{% include 'footer.html' %}
